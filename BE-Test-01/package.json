@@ -1,0 +1,14 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sort": "node index",
+    "reset": "node reset",
+    "gen": "node generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
