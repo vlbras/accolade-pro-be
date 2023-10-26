@@ -15,14 +15,17 @@ const sorting = (files, method) => {
   validateInputs(files, method);
 
   const groups = {};
-  const index = method === "name" ? 0 : 1;
 
   for (const file of files) {
-    const parts = file.split(".");
-    if (parts.length !== 2 || !parts[0] || !parts[1]) {
+    const lastIndex = file.lastIndexOf(".");
+    
+    if (lastIndex === -1) {
       throw new Error(`File is not valid: ${file}`);
     }
-    const key = parts[index];
+    
+    const [name, extension] = file.split(/\.(?=[^.]+$)/);
+    const key = method === "name" ? name : extension;
+
     if (!groups[key]) {
       groups[key] = [];
     }
@@ -36,6 +39,9 @@ const sorting = (files, method) => {
 };
 
 const mockFiles = [
+  "ex1.test.html",
+  "ex1.test.js",
+  "ex1.test.txt",
   "ex1.html",
   "ex1.js",
   "ex1.txt",
